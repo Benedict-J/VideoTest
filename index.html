@@ -16,7 +16,7 @@
 
 <body>
   <div class="container">
-    <h1>Are you Chinese???</h1>
+    <!-- <h1>Are you Chinese???</h1> -->
     <video class="input_video"></video>
     <canvas class="output_canvas" width="300px" height="300px"></canvas>
     <div id="chinese-text">You are <span id="percentage"></span>% chinese</div>
@@ -40,12 +40,16 @@
       let right_eye_diff = landmarks[145].y * 300 - landmarks[159].y * 300
 
       // console.log(left_eye_diff, right_eye_diff)
-      let percentage = Math.round(100 - Math.min(100, (((left_eye_diff / 7 * 100) + (right_eye_diff / 7 * 100)) / 2)))
+      // console.log((((left_eye_diff / 12 * 100) + (right_eye_diff / 12 * 100)) / 2))
 
-      if (percentage < 20) {
+      let percentage = Math.round(100 - Math.min(100, (((left_eye_diff / 12 * 100) + (right_eye_diff / 12 * 100)) / 2)))
+
+      console.log(percentage)
+
+      if (percentage > 20) {
         // console.log(`You are ${percentage}% chinese`)
         document.getElementById('chinese-text').innerHTML = 'You are <span id="percentage"></span>% chinese</div>'
-        document.getElementById('percentage').textContent = percentage
+        document.getElementById('percentage').innerHTML = percentage
       } else {
         document.getElementById('chinese-text').textContent = 'You are not chinese'
       }
